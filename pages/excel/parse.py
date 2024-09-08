@@ -31,11 +31,12 @@ stock_values = get_sheet_values(stock_sheet)
 labels = [label for label in stock_values[0]]
 
 sheet_data = [
-    {f"{label}": stock_values[value_i][label_i] for label_i, label in enumerate(labels)}
+    {
+        f"{label}": stock_values[value_i][label_i] 
+        for label_i, label in enumerate(labels)
+    }
     for value_i in range(1, len(stock_values))
 ]
-for datum in sheet_data:
-    print(datum)
 
 
 def set_sheet_values(data: list[dict[str, str]]):
