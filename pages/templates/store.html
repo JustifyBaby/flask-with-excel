@@ -1,0 +1,22 @@
+{% extends "meta.html" %} {% block content %}
+<form method="post" action="{{ url_for('order') }}" class="text-center"> 
+  <ul>
+    {% for datum in data %}
+    <li class="flex justify-center items-center text-start">
+      <p class="font-medium text-xl p-1 m-3">{{ datum["商品名"] }}</p>
+      <div class="font-medium text-lg p-1 m-3">{{ datum["単価"] }}円</div>
+      <select
+        class="text-lg p-2 m-2 rounded-md"
+        name="{{ datum['商品名'] }}"
+        id="{{ loop.index }}">
+        {% for index in range(datum["在庫数"] + 1) %}
+        <option value="{{ index }}">{{ index }}</option>
+        {% endfor %}
+      </select>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <button type="submit" class="px-4 py-2 m-5 bg-sky-200 rounded-lg shadow active:shadow-none">購入</button>
+</form>
+{% endblock %}
