@@ -3,9 +3,9 @@ import openpyxl as xl
 STOCK = "在庫"
 STOCK_KEY = "在庫数"
 
-BOOK_NAME = "pages/excel/application.xlsx"
+BOOK_PATH = "excel/application.xlsx"
 
-wb = xl.load_workbook(filename=BOOK_NAME)
+wb = xl.load_workbook(filename=BOOK_PATH)
 
 stock_sheet = wb[STOCK]
 
@@ -31,10 +31,7 @@ stock_values = get_sheet_values(stock_sheet)
 labels = [label for label in stock_values[0]]
 
 sheet_data = [
-    {
-        f"{label}": stock_values[value_i][label_i] 
-        for label_i, label in enumerate(labels)
-    }
+    {f"{label}": stock_values[value_i][label_i] for label_i, label in enumerate(labels)}
     for value_i in range(1, len(stock_values))
 ]
 
@@ -52,7 +49,7 @@ def set_sheet_values(data: list[dict[str, str]]):
         cell.value = datum[STOCK_KEY]
         pass
 
-    # wb.save(BOOK_NAME)
+    # wb.save(BOOK_PATH)
 
     return sum(
         [
