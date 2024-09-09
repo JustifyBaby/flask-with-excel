@@ -1,5 +1,5 @@
 from flask import Flask
 
-app = Flask(__name__)
+root = Flask(__name__)
 
-import pages.main
+import pages.app

@@ -1,20 +1,20 @@
-from pages import app
+from pages import root
 from flask import render_template, request, redirect, url_for
 from .excel.parse import sheet_data, set_sheet_values, STOCK_KEY
 
 
-@app.route("/")
+@root.route("/")
 def index():
     return render_template("index.html")
 
 
-@app.route("/store")
+@root.route("/store")
 def store():
 
     return render_template("store.html", data=sheet_data)
 
 
-@app.route("/order", methods=["POST"])
+@root.route("/order", methods=["POST"])
 def order():
     res_all = request.form
     product_names = [product["商品名"] for product in sheet_data]
